@@ -2,12 +2,25 @@
 class ArrayDeque():
     def __init__(self):
         self.capacity = 4
-        self.arr = [0]*self.capacity
+        self.arr = [None]*self.capacity
         self.front = 0
         self.size = 0
 
     def __str__(self):
-        pass
+        returnStr = ""
+        if self.size > 0:
+            index = self.front
+            for i in range(self.size-1):
+                if index == self.capacity:
+                    returnStr += str(self.arr[i - (index-self.front)]) + " "
+                
+                else:
+                    returnStr += str(self.arr[index]) + " "
+                    index += 1
+            
+            back = (self.front + self.size -1) % self.capacity
+            returnStr += str(self.arr[back])  
+        return returnStr
 
     def pushFront(self, data):
         if self.size == self.capacity:
@@ -15,7 +28,7 @@ class ArrayDeque():
 
         front = (self.front -1) % self.capacity
         self.arr[front] = data
-        self.front -= 1
+        self.front = front
         self.size += 1
     
     def pushBack(self, data):
@@ -33,16 +46,21 @@ class ArrayDeque():
 
         self.front = (self.front + 1) % self.capacity
         
-        self.size -= 1
+        if self.size > 0:
+            self.size -= 1
 
         return returnVal
 
     def popBack(self):
-        returnVal = self.arr[self.size]
         back = (self.front + self.size -1) % self.capacity
+        returnVal = self.arr[back]
+        
         self.arr[back] = None
         
-        self.size -= 1
+        
+        if self.size > 0:
+            self.size -= 1
+
 
         return returnVal
 
@@ -68,34 +86,35 @@ class ArrayDeque():
         self.arr = new_arr
 
     
-new_arr = ArrayDeque()
+# new_arr = ArrayDeque()
 
-for i in range(8):
-    new_arr.pushBack("string " + str(i+1))
+# for i in range(8):
+#     new_arr.pushBack("string " + str(i+1))
 
-for i in range(4):
-    new_arr.popFront()
+# for i in range(4):
+#     new_arr.popFront()
 
-new_arr.pushBack("tester 1")
-new_arr.pushBack("tester 2")
-new_arr.pushBack("tester 3")
-new_arr.pushBack("tester 4")
+# new_arr.pushBack("tester 1")
+# new_arr.pushBack("tester 2")
+# new_arr.pushBack("tester 3")
+# new_arr.pushBack("tester 4")
 
-new_arr.pushBack("tester resize?")
-print(new_arr.popFront())
-new_arr.pushBack("tester")
-new_arr.pushBack("tester")
+# new_arr.pushBack("tester resize?")
+# print(new_arr.popFront())
+# new_arr.pushBack("tester")
+# new_arr.pushBack("tester")
 
-new_arr.popBack()
-new_arr.popBack()
-new_arr.popFront()
+# new_arr.popBack()
+# new_arr.popBack()
+# new_arr.popFront()
 
-new_arr.pushFront("frontTest1")
+# new_arr.pushFront("frontTest1")
 
-for i in range(8):
-    new_arr.pushBack("pushbackstring{}".format(i))
+# for i in range(8):
+#     new_arr.pushBack("pushbackstring{}".format(i))
 
-new_arr.pushBack("resize test 2")
+# new_arr.pushBack("resize test 2")
 
-print()
+
+# print(new_arr)
 
