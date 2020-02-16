@@ -57,10 +57,8 @@ class ArrayDeque():
         
         self.arr[back] = None
         
-        
         if self.size > 0:
             self.size -= 1
-
 
         return returnVal
 
@@ -74,47 +72,14 @@ class ArrayDeque():
 
         index = self.front
         for i in range(self.size):
-
+            # The index is used to keep track of where we began rearranging our old elements into the new array
+            # Once the index == self.size we need to loop back to the 0 element in the old array. 
+            # These calculations make sure that the new array is ordered once its resized. 
             if index == self.size:
-                
-                new_arr[i] = self.arr[i - (index-self.front)]
+                new_arr[i] = self.arr[i - (index-self.front)] 
             
             else:
                 new_arr[i] = self.arr[index]
                 index += 1                 
         self.front = 0
         self.arr = new_arr
-
-    
-# new_arr = ArrayDeque()
-
-# for i in range(8):
-#     new_arr.pushBack("string " + str(i+1))
-
-# for i in range(4):
-#     new_arr.popFront()
-
-# new_arr.pushBack("tester 1")
-# new_arr.pushBack("tester 2")
-# new_arr.pushBack("tester 3")
-# new_arr.pushBack("tester 4")
-
-# new_arr.pushBack("tester resize?")
-# print(new_arr.popFront())
-# new_arr.pushBack("tester")
-# new_arr.pushBack("tester")
-
-# new_arr.popBack()
-# new_arr.popBack()
-# new_arr.popFront()
-
-# new_arr.pushFront("frontTest1")
-
-# for i in range(8):
-#     new_arr.pushBack("pushbackstring{}".format(i))
-
-# new_arr.pushBack("resize test 2")
-
-
-# print(new_arr)
-

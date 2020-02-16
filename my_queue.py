@@ -18,18 +18,3 @@ class Queue:
     def getSize(self):
         return self.queue.getSize()
 
-
-# myNewQueueLL = Queue("linked")
-# myNewQueueDeQ = Queue("array")
-
-# for i in range(10):
-#     myNewQueueDeQ.add(i)
-#     myNewQueueLL.add(i)
-
-# for i in range(4):
-#     print(myNewQueueDeQ.remove())
-#     print(myNewQueueLL.remove())
-
-# print(myNewQueueDeQ.getSize())
-# print(myNewQueueLL.getSize())
-# print()

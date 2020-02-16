@@ -1,6 +1,6 @@
 from my_linked_list import LinkedList
-EVENLENGTH = 500
-ODDLENGTH = 499
+EVENLENGTH = 4
+ODDLENGTH = 3
 
 def generatePalindrome(typeStr = ""):
     if typeStr == "odd":
@@ -28,34 +28,40 @@ def generatePalindrome(typeStr = ""):
                     palindromeEven.pushFront(0)
         return palindromeEven
 
-def palindrome(head, firstNode = None, counter = 1, halfwayPoint = 0):
-    if counter == 1:
-        firstNode = head
-    if head.getNextNode() == None:
-        halfwayPoint = counter // 2
-        if firstNode.data == head.data:
-            same = True
-            firstNode = firstNode.getNextNode()
-            return halfwayPoint, same, firstNode
-        return halfwayPoint, False, firstNode
+def palindrome(head, originalNode = None, counter = 1, middle = 0):
+    
+    if counter == 1: # Need to remember the original node that was sent in, special case
+        originalNode = head
+
+    if head.getNextNode() == None: # Base case, end of the linked list.
+        middle = counter // 2
+        
+        if originalNode.data == head.data: # Check if the first and last nodes are the same
+            palindromeCheck = True
+            originalNode = originalNode.getNextNode() # Advance the original node by 1
+            return middle, palindromeCheck, originalNode
+        
+        palindromeCheck = False
+        return middle, palindromeCheck, originalNode
 
     else:
-        halfwayPoint, same, firstNode = palindrome(head.getNextNode(), firstNode, counter+1)
+        middle, palindromeCheck, originalNode = palindrome(head.getNextNode(), originalNode, counter+1) # Recursion call advancing the node forward by one.
         
-        if halfwayPoint >= counter:
-            if counter == 1:
-                return same
+        if middle >= counter: # We only need to check each node until we cover half of the list.
+            if counter == 1: # Edge case to return correctly out of the original function call.
+                return palindromeCheck
             else:
-                return halfwayPoint, same, firstNode
+                return middle, palindromeCheck, originalNode
 
-        if same:
-            if firstNode.data == head.data:
-                firstNode = firstNode.getNextNode()
-                return halfwayPoint, same, firstNode
+        if palindromeCheck: # Check to see the previous recursions result 
+            if originalNode.data == head.data:
+                originalNode = originalNode.getNextNode() # Advance the original node by 1
+                return middle, palindromeCheck, originalNode
             else:
-                return halfwayPoint, False, firstNode
+                palindromeCheck = False
+                return middle, palindromeCheck, originalNode
         else:
-            return halfwayPoint, False, firstNode
+            return middle, palindromeCheck, originalNode
         
         
         
@@ -76,6 +82,20 @@ def main():
         oddNotPalindrome.pushFront(i)
 
 
+
+    testPalindrome = LinkedList()
+
+    testPalindrome.pushFront("a")
+    testPalindrome.pushFront("b")
+    testPalindrome.pushFront("a")
+    testPalindrome.pushFront("a")
+    testPalindrome.pushFront("b")
+    testPalindrome.pushFront("b")
+    testPalindrome.pushFront("a")
+    testPalindrome.pushFront("a")
+    testPalindrome.pushFront("b")
+    testPalindrome.pushFront("a")
+
     #print(evenPalindrome)
     print(palindrome(evenPalindrome.getNode()))
     
@@ -87,6 +107,8 @@ def main():
 
     #print(oddNotPalindrome)    
     print(palindrome(oddNotPalindrome.getNode()))
+
+    print(palindrome(testPalindrome.getNode()))
 
 
 main()

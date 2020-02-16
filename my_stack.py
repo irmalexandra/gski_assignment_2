@@ -18,18 +18,3 @@ class Stack:
     def getSize(self):
         return self.stack.getSize()
 
-
-# myNewStackLL = Stack("linked")
-# myNewStackDeQ = Stack("array")
-
-# for i in range(10):
-#     myNewStackDeQ.push(i)
-#     myNewStackLL.push(i)
-
-# for i in range(5):
-#     print(myNewStackDeQ.pop())
-#     print(myNewStackLL.pop())
-
-# print(myNewStackDeQ.getSize())
-# print(myNewStackLL.getSize())
-# print()

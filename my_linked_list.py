@@ -65,26 +65,5 @@ class LinkedList():
         return self.size
         
 
-    # FUNCTION IMPLEMENTED ONLY FOR PALINDROME PART OF THE ASSIGNMENT
-    def getNode(self):
-        return self.front
-    
-
-
-
-# newLinkedList = LinkedList()
-
-# print(newLinkedList.popFront())
-
-# for i in range(10):
-#     if i % 2 == 0:
-#         newLinkedList.pushFront(i)
-#     else:
-#         newLinkedList.pushBack(i)
-    
-#     print(newLinkedList)
-
-# print()
-
 
 
